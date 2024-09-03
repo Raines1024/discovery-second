@@ -1,0 +1,54 @@
+---
+name: Test-discovery-second
+author: Raines
+version: 1
+description: test process discovery algorithms
+
+services:
+  powl_container:
+    build:
+      context: .
+  declare_container:
+    build:
+      context: .
+  performance_dfg_container:
+    build:
+      context: .
+  temporal_profile_container:
+    build:
+      context: .
+  process_tree_inductive_container:
+    build:
+      context: .
+
+flow:
+  - name: powl
+    container: powl_container
+    commands:
+      - type: console
+        command: python /app/test_discovery.py powl
+        note: Running discover powl
+  - name: declare
+    container: declare_container
+    commands:
+      - type: console
+        command: python /app/test_discovery.py declare
+        note: Running discover declare
+  - name: performance_dfg
+      container: performance_dfg_container
+      commands:
+        - type: console
+          command: python /app/test_discovery.py performance_dfg
+          note: Running discover performance dfg
+  - name: temporal_profile
+      container: temporal_profile_container
+      commands:
+        - type: console
+          command: python /app/test_discovery.py temporal_profile
+          note: Running discover temporal profile
+  - name: process_tree_inductive
+      container: process_tree_inductive_container
+      commands:
+        - type: console
+          command: python /app/test_discovery.py process_tree_inductive
+          note: Running discover process tree inductive
